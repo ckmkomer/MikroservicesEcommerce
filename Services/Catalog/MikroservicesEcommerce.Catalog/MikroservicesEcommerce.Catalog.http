@@ -1,0 +1,6 @@
+@MikroservicesEcommerce.Catalog_HostAddress = http://localhost:5145
+
+GET {{MikroservicesEcommerce.Catalog_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
