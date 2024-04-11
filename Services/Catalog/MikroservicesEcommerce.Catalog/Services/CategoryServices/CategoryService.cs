@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MikroservicesEcommerce.Catalog.Dtos.CategoryDtos;
 using MikroservicesEcommerce.Catalog.Entities;
+using MikroservicesEcommerce.Catalog.Settings;
 using MongoDB.Driver;
 
 namespace MikroservicesEcommerce.Catalog.Services.CategoryServices
@@ -10,9 +11,11 @@ namespace MikroservicesEcommerce.Catalog.Services.CategoryServices
         private readonly IMongoCollection<Category> _categoryCollection;
         private readonly IMapper _mapper;
 
-        public CategoryService(IMongoCollection<Category> categoryCollection, IMapper mapper)
+        public CategoryService(IMapper mapper , IDatabaseSettings _databaseSettings)
         {
-            _categoryCollection = categoryCollection;
+            var client = new MongoClient(_databaseSettings.ConnectionString);
+            var database= client.GetDatabase(_databaseSettings.DatabaseName);
+            _categoryCollection = database.GetCollection<Category>(_databaseSettings.CategoryCollectionMane);
             _mapper = mapper;
         }
 
