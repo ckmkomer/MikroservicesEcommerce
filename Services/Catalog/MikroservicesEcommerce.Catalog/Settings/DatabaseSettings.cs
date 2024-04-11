@@ -2,7 +2,7 @@
 {
     public class DatabaseSettings : IDatabaseSettings
     {
-        public string CategoryCollectionMane { get; set; }
+        public string CategoryCollectionName { get; set; }
         public string ProductCollectionName { get; set; }
 
         public string ProductDetailCollectionName { get; set; }
